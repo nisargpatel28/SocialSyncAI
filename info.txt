@@ -8,3 +8,23 @@ Co-authored-by: Tarj Mehta <tarj.mehta@icloud.com>
 Co-authored-by: Nisarg Patel <patelnisarg.pn@gmail.com>"
 
 Force push method added
+
+Commands to try:
+
+python manage.py customadmin
+
+C:\xampp\htdocs\github\Python-Django\malketai\myapp\forms.py
+line 6
+    email = forms.EmailField()
+
+line 10
+        f"Sending email from {self.cleaned_data['email']} with message: {self.cleaned_data['message']}")
+
+
+
+        ****
+
+        Line #41 
+C:\xampp\htdocs\github\Python-Django\malketai\malketai\settings.py
+
+    'myapp.apps.MyappConfig',
