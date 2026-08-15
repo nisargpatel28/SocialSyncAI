@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
-#from django.contrib.auth.models import User
-from .models import User
-from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, get_user_model
+from django.http import HttpResponse, HttpResponseRedirect
 from .forms import ContactForm
+
+# Use the Django auth user model rather than the app-local `User` model
+User = get_user_model()
 # Create your views here.
 
 def admin_login(request):
@@ -14,17 +16,17 @@ def admin_login(request):
         if request.method == 'POST':
             username = request.POST.get('username')
             password = request.POST.get('password')
-            user_obj = User.objects.filter(username=username)
-            if not user_obj.exists():
+            # quick check if a user with that username exists
+            if not User.objects.filter(username=username).exists():
                 messages.info(request, "User account not found")
-                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
-            user_obj = authenticate(username = username, password = password)
+            user_obj = authenticate(username=username, password=password)
 
             if user_obj and user_obj.is_superuser:
-                login(request, user_obj) 
+                login(request, user_obj)
                 return redirect('index')
-        
+
             messages.info(request, 'Invalid Info')
             return redirect('/')
 
