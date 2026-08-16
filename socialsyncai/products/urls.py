@@ -9,4 +9,6 @@ urlpatterns = [
          name='review-list-create'),
     path('reviews/<int:review_id>/', views.ReviewDetailView.as_view(),
          name='review-detail'),
+    path('<int:product_id>/generate-content/',
+         views.ProductGenerateContentView.as_view(), name='product-generate-content'),
 ]

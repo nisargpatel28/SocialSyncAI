@@ -132,6 +132,9 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Anthropic API key for AI content generation (products/ai_content.py)
+ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY')
+
 # Django REST Framework Configuration
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
